@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandFuel — Monthly Marketing for Health & Supplement Brands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --dark: #111111;
+  --card: #161616;
+  --border: #222222;
+  --green: #3DDC84;
+  --green-dim: #2AB870;
+  --green-glow: rgba(61,220,132,0.15);
+  --white: #F5F5F0;
+  --muted: #888880;
+  --accent: #C8F542;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+
+.nav-logo span { color: var(--green); }
+
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 13px; font-weight: 500; letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--green); color: var(--black);
+  padding: 10px 24px; border-radius: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+
+.nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 140px 48px 80px;
+  position: relative; overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 80% 40%, rgba(61,220,132,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 20% 70%, rgba(200,245,66,0.04) 0%, transparent 60%);
+}
+
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: .03;
+  background-image:
+    linear-gradient(var(--green) 1px, transparent 1px),
+    linear-gradient(90deg, var(--green) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 28px;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 32px; height: 1px; background: var(--green);
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 10vw, 140px);
+  line-height: .92;
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+  max-width: 900px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--green);
+  -webkit-text-stroke: 0px;
+}
+
+.hero h1 .outline {
+  -webkit-text-stroke: 1px var(--white);
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 18px; font-weight: 300; color: var(--muted);
+  max-width: 540px; line-height: 1.7; margin-bottom: 48px;
+}
+
+.hero-actions {
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--green); color: var(--black);
+  padding: 16px 36px; border-radius: 2px;
+  font-size: 14px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all .2s;
+}
+
+.btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+.btn-ghost {
+  color: var(--white); text-decoration: none;
+  font-size: 14px; font-weight: 500; letter-spacing: .04em;
+  display: inline-flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px; transition: border-color .2s, color .2s;
+}
+
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+.hero-stats {
+  display: flex; gap: 48px; margin-top: 80px;
+  padding-top: 48px; border-top: 1px solid var(--border);
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; color: var(--green); line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px; color: var(--muted); letter-spacing: .06em;
+  text-transform: uppercase; margin-top: 4px;
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0; overflow: hidden;
+  background: var(--dark);
+}
+
+.marquee-track {
+  display: flex; gap: 0;
+  animation: marquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  display: flex; align-items: center; gap: 24px;
+  padding: 0 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.marquee-dot { color: var(--green); font-size: 18px; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── PROBLEM ── */
+.problem {
+  padding: 120px 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; max-width: 1200px; margin: 0 auto;
+}
+
+.section-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.section-tag::before { content: '//'; color: var(--muted); }
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1; letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.problem-text p {
+  font-size: 16px; color: var(--muted); line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.problem-text p strong { color: var(--white); font-weight: 500; }
+
+.problem-cards {
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.prob-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 20px 24px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: border-color .2s;
+}
+
+.prob-card:hover { border-color: var(--green); }
+
+.prob-icon {
+  font-size: 20px; flex-shrink: 0; margin-top: 2px;
+}
+
+.prob-title {
+  font-weight: 500; font-size: 15px; margin-bottom: 4px;
+}
+
+.prob-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* ── WHAT YOU GET ── */
+.deliverables {
+  padding: 120px 48px;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.deliverables-inner { max-width: 1200px; margin: 0 auto; }
+
+.deliverables-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 60px;
+}
+
+.deliverables-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+}
+
+.del-card {
+  background: var(--card);
+  padding: 40px 32px;
+  position: relative; overflow: hidden;
+  transition: background .2s;
+}
+
+.del-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--green); transform: scaleX(0);
+  transition: transform .3s; transform-origin: left;
+}
+
+.del-card:hover { background: #1A1A1A; }
+.del-card:hover::before { transform: scaleX(1); }
+
+.del-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px; color: var(--green-glow);
+  line-height: 1; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--green) 0%, transparent 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.del-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.del-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+.del-items {
+  margin-top: 20px; display: flex; flex-direction: column; gap: 8px;
+}
+
+.del-item {
+  font-size: 12px; color: var(--muted);
+  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+}
+
+.del-item::before { content: '→'; color: var(--green); flex-shrink: 0; }
+
+/* ── PRICING ── */
+.pricing {
+  padding: 120px 48px; max-width: 1200px; margin: 0 auto;
+}
+
+.pricing-header { text-align: center; margin-bottom: 64px; }
+.pricing-header p { color: var(--muted); font-size: 16px; margin-top: 16px; }
+
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+
+.price-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 48px 36px;
+  position: relative;
+  transition: border-color .2s, transform .2s;
+}
+
+.price-card:hover { border-color: var(--green); transform: translateY(-4px); }
+
+.price-card.featured {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.price-card.featured * { color: var(--black) !important; }
+.price-card.featured .price-sub { color: rgba(0,0,0,.6) !important; }
+.price-card.featured .price-feature { border-color: rgba(0,0,0,.15) !important; }
+.price-card.featured .price-feature::before { color: var(--black) !important; }
+.price-card.featured .btn-plan { background: var(--black); color: var(--white); }
+.price-card.featured .btn-plan:hover { background: #222; }
+
+.featured-badge {
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  background: var(--black); color: var(--green);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 0 0 4px 4px;
+}
+
+.price-tier {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 24px;
+}
+
+.price-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px; line-height: 1; margin-bottom: 4px;
+}
+
+.price-sub {
+  font-size: 13px; color: var(--muted); margin-bottom: 32px;
+}
+
+.price-features {
+  display: flex; flex-direction: column; gap: 0;
+  margin-bottom: 36px;
+}
+
+.price-feature {
+  font-size: 14px; padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+
+.price-feature::before { content: '✓'; color: var(--green); flex-shrink: 0; font-weight: 700; }
+
+.btn-plan {
+  display: block; text-align: center;
+  background: var(--black); color: var(--white);
+  border: 1px solid var(--border);
+  padding: 14px; border-radius: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; text-decoration: none;
+  transition: all .2s;
+}
+
+.btn-plan:hover { background: var(--green); color: var(--black); border-color: var(--green); }
+
+/* ── PROCESS ── */
+.process {
+  padding: 120px 48px;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+
+.process-inner { max-width: 1200px; margin: 0 auto; }
+.process-header { margin-bottom: 64px; }
+
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute; top: 28px; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, var(--green), var(--border), var(--green), var(--border));
+  z-index: 0;
+}
+
+.step {
+  position: relative; z-index: 1;
+  padding: 0 24px; text-align: center;
+}
+
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--card); border: 1px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--green);
+}
+
+.step-title { font-weight: 500; font-size: 16px; margin-bottom: 10px; }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── WHO ── */
+.who {
+  padding: 120px 48px; max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+
+.who-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+
+.who-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 24px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 4px; transition: border-color .2s;
+}
+
+.who-item:hover { border-color: var(--green); }
+
+.who-check {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--green-glow); border: 1px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--green); font-size: 13px; font-weight: 700;
+}
+
+.who-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.who-text strong { color: var(--white); font-weight: 500; }
+
+.who-visual {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 4px; padding: 48px 40px;
+  position: relative; overflow: hidden;
+}
+
+.who-visual::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--green), var(--accent));
+}
+
+.visual-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--muted); letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 32px;
+}
+
+.visual-math {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px; line-height: 1.2; color: var(--white);
+  margin-bottom: 8px;
+}
+
+.visual-math span { color: var(--green); }
+.visual-eq { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+
+.visual-bar-wrap { margin-bottom: 12px; }
+.visual-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--muted); margin-bottom: 6px;
+}
+
+.visual-bar {
+  height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
+}
+
+.visual-bar-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--green), var(--accent));
+  animation: fillbar 2s ease forwards;
+}
+
+@keyframes fillbar { from { width: 0; } }
+
+/* ── CTA ── */
+.cta-section {
+  padding: 120px 48px;
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.cta-section h2 { font-size: clamp(48px, 7vw, 100px); margin-bottom: 24px; }
+.cta-section p { color: var(--muted); font-size: 18px; margin-bottom: 48px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-section p { margin-bottom: 48px; }
+
+.cta-note {
+  margin-top: 24px;
+  font-size: 13px; color: var(--muted);
+  font-family: 'DM Mono', monospace; letter-spacing: .04em;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 40px 48px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 2px;
+}
+
+.footer-logo span { color: var(--green); }
+
+.footer-text { font-size: 12px; color: var(--muted); }
+
+.footer-link {
+  color: var(--muted); text-decoration: none; font-size: 13px;
+  transition: color .2s;
+}
+
+.footer-link:hover { color: var(--green); }
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .problem { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+  .deliverables { padding: 80px 24px; }
+  .deliverables-grid { grid-template-columns: 1fr 1fr; }
+  .deliverables-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pricing { padding: 80px 24px; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+  .process { padding: 80px 24px; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .process-steps::before { display: none; }
+  .who { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+  .cta-section { padding: 80px 24px; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Brand<span>Fuel</span></div>
+  <ul class="nav-links">
+    <li><a href="#what-you-get">Deliverables</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how-it-works">Process</a></li>
+    <li><a href="#who">Who It's For</a></li>
+  </ul>
+  <a href="https://jacques7.gumroad.com/l/ykzhtm" class="nav-cta" target="_blank">Start Today →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-tag">Monthly Marketing — Done For You</div>
+
+  <h1>
+    Stop Scrambling<br>
+    For <em>Content.</em><br>
+    <span class="outline">Every Month.</span>
+  </h1>
+
+  <p class="hero-sub">
+    BrandFuel delivers a complete month of social content, email newsletters, campaign angles, and brand strategy — tailored to your supplement brand. Every single month.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://jacques7.gumroad.com/l/ykzhtm" class="btn-primary" target="_blank">
+      Get Started — $199/mo →
+    </a>
+    <a href="#what-you-get" class="btn-ghost">See what's included ↓</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">12</div>
+      <div class="stat-label">Social posts / month</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Email newsletters</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Campaign angles</div>
+    </div>
+    <div>
+      <div class="stat-num">3hrs</div>
+      <div class="stat-label">Your time saved weekly</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot">◆</span> Social Media Content <span class="marquee-dot">◆</span> Email Newsletters <span class="marquee-dot">◆</span> Campaign Strategy <span class="marquee-dot">◆</span> Brand Positioning <span class="marquee-dot">◆</span> Supplement Brands <span class="marquee-dot">◆</span> Health & Wellness <span class="marquee-dot">◆</span> DTC Marketing <span class="marquee-dot">◆</span> Monthly Delivery</div>
+    <div class="marquee-item"><span class="marquee-dot">◆</span> Social Media Content <span class="marquee-dot">◆</span> Email Newsletters <span class="marquee-dot">◆</span> Campaign Strategy <span class="marquee-dot">◆</span> Brand Positioning <span class="marquee-dot">◆</span> Supplement Brands <span class="marquee-dot">◆</span> Health & Wellness <span class="marquee-dot">◆</span> DTC Marketing <span class="marquee-dot">◆</span> Monthly Delivery</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="problem-text fade-up">
+    <div class="section-tag">The Problem</div>
+    <h2>Great Product. Invisible Brand.</h2>
+    <p>Most supplement brands have a <strong>great product and a forgettable brand.</strong> Same ingredients. Same claims. Same aesthetic.</p>
+    <p>The brands that win — AG1, Ritual, Momentous — win on brand. On trust. On the feeling they create before a customer even opens the bottle.</p>
+    <p>But <strong>creating consistent, strategic content every month</strong> takes time you don't have.</p>
+  </div>
+
+  <div class="problem-cards fade-up">
+    <div class="prob-card">
+      <div class="prob-icon">⏱</div>
+      <div>
+        <div class="prob-title">No time to create content</div>
+        <div class="prob-desc">You're running a business. Content keeps getting pushed to tomorrow.</div>
+      </div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-icon">🔄</div>
+      <div>
+        <div class="prob-title">Inconsistent posting</div>
+        <div class="prob-desc">Gaps in your feed signal an inactive brand. Customers notice.</div>
+      </div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-icon">💸</div>
+      <div>
+        <div class="prob-title">Agencies cost too much</div>
+        <div class="prob-desc">Full-service marketing retainers start at $3,000/month. Not realistic for most brands.</div>
+      </div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-icon">🎯</div>
+      <div>
+        <div class="prob-title">Generic content doesn't convert</div>
+        <div class="prob-desc">Template posts without strategy don't build trust or drive sales.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables" id="what-you-get">
+  <div class="deliverables-inner">
+    <div class="deliverables-header fade-up">
+      <div>
+        <div class="section-tag">What You Get</div>
+        <h2>Everything. Every Month.</h2>
+      </div>
+      <p style="color:var(--muted);font-size:15px;max-width:320px;line-height:1.7">Delivered as a complete Google Doc package on the same day every month.</p>
+    </div>
+
+    <div class="deliverables-grid">
+      <div class="del-card fade-up">
+        <div class="del-num">12</div>
+        <div class="del-title">Social Media Posts</div>
+        <div class="del-desc">Ready-to-post content tailored to your brand voice, audience, and monthly theme.</div>
+        <div class="del-items">
+          <div class="del-item">4 educational posts</div>
+          <div class="del-item">3 problem-aware posts</div>
+          <div class="del-item">3 identity / lifestyle posts</div>
+          <div class="del-item">2 product-forward posts</div>
+        </div>
+      </div>
+
+      <div class="del-card fade-up">
+        <div class="del-num">4</div>
+        <div class="del-title">Email Newsletters</div>
+        <div class="del-desc">Human, educational emails that build trust and naturally integrate your product.</div>
+        <div class="del-items">
+          <div class="del-item">Subject lines included</div>
+          <div class="del-item">Story-driven format</div>
+          <div class="del-item">Soft product integration</div>
+          <div class="del-item">Clear call to action</div>
+        </div>
+      </div>
+
+      <div class="del-card fade-up">
+        <div class="del-num">4</div>
+        <div class="del-title">Promotional Angles</div>
+        <div class="del-desc">Fresh campaign angles every month so your marketing never goes stale.</div>
+        <div class="del-items">
+          <div class="del-item">Campaign name + headline</div>
+          <div class="del-item">Target emotion identified</div>
+          <div class="del-item">Suggested call to action</div>
+          <div class="del-item">Ready for ads or organic</div>
+        </div>
+      </div>
+
+      <div class="del-card fade-up">
+        <div class="del-num">1</div>
+        <div class="del-title">Strategy Document</div>
+        <div class="del-desc">Monthly brand strategy PDF with themes, positioning, and growth recommendations.</div>
+        <div class="del-items">
+          <div class="del-item">Monthly focus theme</div>
+          <div class="del-item">Content pillars defined</div>
+          <div class="del-item">Promotional ideas</div>
+          <div class="del-item">Growth recommendations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header fade-up">
+    <div class="section-tag" style="justify-content:center">Pricing</div>
+    <h2>Simple. Transparent. No Contracts.</h2>
+    <p>Cancel anytime. No setup fees. No surprises.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card fade-up">
+      <div class="price-tier">Starter</div>
+      <div class="price-amount">$99</div>
+      <div class="price-sub">per month · cancel anytime</div>
+      <div class="price-features">
+        <div class="price-feature">12 social media posts</div>
+        <div class="price-feature">2 email newsletters</div>
+        <div class="price-feature">Delivered via Google Doc</div>
+        <div class="price-feature">Tailored to your brand</div>
+      </div>
+      <a href="https://jacques7.gumroad.com/l/ykzhtm" class="btn-plan" target="_blank">Get Started →</a>
+    </div>
+
+    <!-- Growth -->
+    <div class="price-card featured fade-up">
+      <div class="featured-badge">Most Popular</div>
+      <div class="price-tier">Growth</div>
+      <div class="price-amount">$199</div>
+      <div class="price-sub">per month · cancel anytime</div>
+      <div class="price-features">
+        <div class="price-feature">12 social media posts</div>
+        <div class="price-feature">4 email newsletters</div>
+        <div class="price-feature">4 promotional campaign angles</div>
+        <div class="price-feature">Delivered via Google Doc</div>
+        <div class="price-feature">Tailored to your brand</div>
+      </div>
+      <a href="https://jacques7.gumroad.com/l/ykzhtm" class="btn-plan" target="_blank">Get Started →</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="price-card fade-up">
+      <div class="price-tier">Premium</div>
+      <div class="price-amount">$299</div>
+      <div class="price-sub">per month · cancel anytime</div>
+      <div class="price-features">
+        <div class="price-feature">Everything in Growth</div>
+        <div class="price-feature">Monthly strategy document</div>
+        <div class="price-feature">One revision round included</div>
+        <div class="price-feature">Priority delivery</div>
+        <div class="price-feature">Tailored to your brand</div>
+      </div>
+      <a href="https://jacques7.gumroad.com/l/ykzhtm" class="btn-plan" target="_blank">Get Started →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="how-it-works">
+  <div class="process-inner">
+    <div class="process-header fade-up">
+      <div class="section-tag">How It Works</div>
+      <h2>Simple Process. Consistent Results.</h2>
+    </div>
+
+    <div class="process-steps">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-title">Subscribe</div>
+        <div class="step-desc">Choose your plan and subscribe. You'll receive an onboarding form within 24 hours.</div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <div class="step-title">Onboard</div>
+        <div class="step-desc">Fill in a short brand questionnaire. Your products, audience, tone, and goals.</div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <div class="step-title">Receive</div>
+        <div class="step-desc">Your complete monthly content package is delivered via Google Doc within 5 business days.</div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">4</div>
+        <div class="step-title">Repeat</div>
+        <div class="step-desc">Same day every month. Consistent content. Consistent brand. Consistent growth.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="who" id="who">
+  <div class="fade-up">
+    <div class="section-tag">Who It's For</div>
+    <h2>Built For Growing Supplement Brands</h2>
+    <div class="who-list">
+      <div class="who-item">
+        <div class="who-check">✓</div>
+        <div class="who-text"><strong>Supplement & health brands</strong> that need consistent content without hiring full-time.</div>
+      </div>
+      <div class="who-item">
+        <div class="who-check">✓</div>
+        <div class="who-text"><strong>Functional beverage brands</strong> building trust through education and storytelling.</div>
+      </div>
+      <div class="who-item">
+        <div class="who-check">✓</div>
+        <div class="who-text"><strong>DTC health startups</strong> that have a great product but no time to market it consistently.</div>
+      </div>
+      <div class="who-item">
+        <div class="who-check">✓</div>
+        <div class="who-text"><strong>Health & wellness companies</strong> that want strategic content — not just filler posts.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="who-visual fade-up">
+    <div class="visual-label">// Revenue Potential</div>
+
+    <div class="visual-math">10 clients <span>×</span> $199</div>
+    <div class="visual-eq">= $1,990/month recurring revenue</div>
+
+    <div class="visual-bar-wrap">
+      <div class="visual-bar-label"><span>Starter clients</span><span>$99/mo</span></div>
+      <div class="visual-bar"><div class="visual-bar-fill" style="width:33%;animation-delay:.2s"></div></div>
+    </div>
+    <div class="visual-bar-wrap">
+      <div class="visual-bar-label"><span>Growth clients</span><span>$199/mo</span></div>
+      <div class="visual-bar"><div class="visual-bar-fill" style="width:66%;animation-delay:.4s"></div></div>
+    </div>
+    <div class="visual-bar-wrap">
+      <div class="visual-bar-label"><span>Premium clients</span><span>$299/mo</span></div>
+      <div class="visual-bar"><div class="visual-bar-fill" style="width:100%;animation-delay:.6s"></div></div>
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);margin-top:24px;line-height:1.6">Most clients upgrade from Growth to Premium after 2 months. Retainer clients also request one-off brand audits and strategy projects.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-tag" style="justify-content:center">Ready?</div>
+  <h2>Fuel Your Brand's <em style="color:var(--green);font-style:normal">Growth.</em></h2>
+  <p>Start today. Your first content package delivered within 5 business days. Cancel anytime.</p>
+  <a href="https://jacques7.gumroad.com/l/ykzhtm" class="btn-primary" target="_blank" style="display:inline-flex">
+    Subscribe Now — $199/month →
+  </a>
+  <div class="cta-note">No contracts · No setup fees · Cancel anytime</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Brand<span>Fuel</span></div>
+  <div class="footer-text">© 2026 BrandFuel. Monthly marketing for health & supplement brands.</div>
+  <a href="mailto:brandfuel2026@gmail.com" class="footer-link">brandfuel2026@gmail.com</a>
+</footer>
+
+<script>
+// Fade-up on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Smooth nav link behavior
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
